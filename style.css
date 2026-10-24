@@ -1,0 +1,81 @@
+:root {
+  --bg: #fff8ee;
+  --bg-alt: #fdeedd;
+  --ink: #3a2a24;
+  --muted: #8a7468;
+  --accent: #e0573d;
+  --accent-2: #f2a541;
+  --card: #fff;
+  --radius: 14px;
+  --shadow: 0 8px 24px rgba(90, 50, 30, .12);
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #1d1613; --bg-alt: #261c18; --ink: #f6e9dc; --muted: #b9a596; --card: #2f231e; --shadow: 0 8px 24px rgba(0,0,0,.4); }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.65 "Be Vietnam Pro", system-ui, sans-serif; }
+h1, h2 { font-family: "Playfair Display", serif; line-height: 1.15; }
+h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); text-align: center; margin: 0 0 2rem; }
+
+.nav { position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: .7rem 5vw; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(10px); }
+.brand { font-family: "Playfair Display", serif; font-weight: 800; font-size: 1.3rem; color: var(--accent); text-decoration: none; }
+.nav nav { display: flex; gap: 1.2rem; overflow-x: auto; }
+.nav nav a { color: var(--ink); text-decoration: none; font-size: .92rem; white-space: nowrap; }
+.nav nav a:hover { color: var(--accent); }
+
+.hero { min-height: 88vh; display: grid; place-items: center; text-align: center; padding: 4rem 6vw; background: radial-gradient(circle at 20% 20%, #ffd9a8 0, transparent 45%), radial-gradient(circle at 85% 80%, #ffb4a0 0, transparent 40%), var(--bg); }
+@media (prefers-color-scheme: dark) { .hero { background: radial-gradient(circle at 20% 20%, #5a3a22 0, transparent 45%), radial-gradient(circle at 85% 80%, #5a2a22 0, transparent 40%), var(--bg); } }
+.eyebrow { letter-spacing: .3em; text-transform: uppercase; color: var(--accent); font-weight: 700; font-size: .85rem; margin: 0; }
+.hero h1 { font-size: clamp(3rem, 12vw, 7rem); margin: .3em 0; }
+.tagline { font-family: "Dancing Script", cursive; font-size: clamp(1.6rem, 4vw, 2.4rem); color: var(--muted); margin: 0 0 2rem; }
+.stats { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 2.5rem; padding: 0; margin: 3rem 0 0; }
+.stats b { display: block; font: 800 2.4rem "Playfair Display", serif; color: var(--accent); }
+.stats span { color: var(--muted); font-size: .9rem; }
+
+.btn { display: inline-block; padding: .8rem 1.8rem; border-radius: 999px; background: var(--accent); color: #fff; text-decoration: none; font-weight: 700; box-shadow: var(--shadow); transition: transform .2s; }
+.btn:hover { transform: translateY(-2px); }
+.btn.ghost { background: transparent; color: var(--accent); border: 2px solid var(--accent); box-shadow: none; }
+
+.section { padding: 5rem 6vw; }
+.section.alt { background: var(--bg-alt); }
+
+.timeline { list-style: none; max-width: 760px; margin: 0 auto; padding: 0 0 0 1.6rem; border-left: 3px solid var(--accent-2); }
+.timeline li { position: relative; margin-bottom: 2.2rem; }
+.timeline li::before { content: ""; position: absolute; left: calc(-1.6rem - 9px); top: .35rem; width: 15px; height: 15px; border-radius: 50%; background: var(--accent); border: 3px solid var(--bg); }
+.timeline .yr { font: 800 1.1rem "Playfair Display", serif; color: var(--accent); }
+.timeline h3 { margin: .1rem 0; }
+.timeline p { margin: 0; color: var(--muted); }
+
+.filters { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin-bottom: 2rem; }
+.chip { border: 2px solid var(--accent); background: transparent; color: var(--accent); padding: .35rem 1rem; border-radius: 999px; cursor: pointer; font: inherit; font-size: .9rem; }
+.chip.on { background: var(--accent); color: #fff; }
+.grid { columns: 3 240px; column-gap: 1rem; max-width: 1200px; margin: 0 auto; }
+.tile { break-inside: avoid; margin: 0 0 1rem; border-radius: var(--radius); overflow: hidden; cursor: zoom-in; position: relative; box-shadow: var(--shadow); background: var(--card); transition: transform .25s; }
+.tile:hover { transform: scale(1.02) rotate(-.4deg); }
+.tile img { display: block; width: 100%; height: auto; }
+.tile .ph { display: grid; place-items: center; color: #fff; font: 600 1.3rem "Dancing Script", cursive; padding: 1rem; text-align: center; }
+.tile .cap { position: absolute; inset: auto 0 0 0; padding: 1.5rem .8rem .6rem; color: #fff; font-size: .85rem; background: linear-gradient(transparent, rgba(0,0,0,.65)); opacity: 0; transition: opacity .25s; }
+.tile:hover .cap { opacity: 1; }
+.hint { text-align: center; color: var(--muted); font-size: .9rem; margin-top: 1.5rem; }
+
+.members { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.2rem; max-width: 1100px; margin: 0 auto; }
+.member { background: var(--card); border-radius: var(--radius); padding: 1.4rem; text-align: center; box-shadow: var(--shadow); }
+.avatar { width: 84px; height: 84px; margin: 0 auto .8rem; border-radius: 50%; display: grid; place-items: center; font: 800 1.8rem "Playfair Display", serif; color: #fff; background: linear-gradient(135deg, var(--accent), var(--accent-2)); object-fit: cover; }
+.member h3 { margin: 0; font-size: 1.05rem; }
+.member .role { color: var(--accent); font-size: .85rem; font-weight: 700; }
+.member q { display: block; margin-top: .6rem; color: var(--muted); font-style: italic; font-size: .9rem; }
+
+.wishes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.4rem; max-width: 1000px; margin: 0 auto; }
+.wish { background: #fff6b8; color: #4a3b20; padding: 1.4rem; border-radius: 4px; box-shadow: var(--shadow); transform: rotate(var(--r, -1deg)); font: 600 1.35rem/1.4 "Dancing Script", cursive; }
+.wish small { display: block; margin-top: .8rem; font-size: 1.05rem; text-align: right; opacity: .7; }
+
+footer { text-align: center; padding: 3rem 6vw; color: var(--muted); }
+
+.lightbox { position: fixed; inset: 0; z-index: 50; background: rgba(0,0,0,.92); display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 1rem; }
+.lightbox[hidden] { display: none; }
+.lightbox figure { margin: 0; text-align: center; min-width: 0; }
+.lightbox img { max-width: 100%; max-height: 82vh; border-radius: 8px; }
+.lightbox figcaption { color: #eee; margin-top: .8rem; }
+.lb-close, .lb-nav { background: none; border: 0; color: #fff; font-size: 3rem; cursor: pointer; padding: .5rem 1rem; }
+.lb-close { position: absolute; top: .5rem; right: 1rem; }

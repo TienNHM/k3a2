@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lớp K3A2 — Kỷ niệm thanh xuân</title>
+  <meta name="description" content="Nơi lưu giữ những kỷ niệm của lớp chúng mình thời cấp 3.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Dancing+Script:wght@600;700&display=swap&subset=vietnamese" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="nav">
+    <a href="#top" class="brand" id="brand"></a>
+    <nav>
+      <a href="#timeline">Hành trình</a>
+      <a href="#gallery">Kỷ niệm</a>
+      <a href="#members">Thành viên</a>
+      <a href="#wishes">Lưu bút</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <p class="eyebrow" id="years"></p>
+      <h1 id="title"></h1>
+      <p class="tagline" id="tagline"></p>
+      <a href="#gallery" class="btn">Xem kỷ niệm ↓</a>
+      <ul class="stats" id="stats"></ul>
+    </div>
+  </section>
+
+  <section id="timeline" class="section">
+    <h2>Hành trình của chúng mình</h2>
+    <ol class="timeline" id="timelineList"></ol>
+  </section>
+
+  <section id="gallery" class="section alt">
+    <h2>Góc kỷ niệm</h2>
+    <div class="filters" id="filters"></div>
+    <div class="grid" id="grid"></div>
+    <p class="hint" id="galleryHint"></p>
+  </section>
+
+  <section id="members" class="section">
+    <h2>Những người bạn</h2>
+    <div class="members" id="memberList"></div>
+  </section>
+
+  <section id="wishes" class="section alt">
+    <h2>Lưu bút</h2>
+    <div class="wishes" id="wishList"></div>
+  </section>
+
+  <footer>
+    <p id="footerText"></p>
+    <a id="contact" class="btn ghost" target="_blank" rel="noopener"></a>
+  </footer>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lb-close" aria-label="Đóng">×</button>
+    <button class="lb-nav prev" aria-label="Ảnh trước">‹</button>
+    <figure>
+      <img id="lbImg" alt="">
+      <figcaption id="lbCap"></figcaption>
+    </figure>
+    <button class="lb-nav next" aria-label="Ảnh sau">›</button>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="photos.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
