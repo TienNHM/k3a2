@@ -1,0 +1,37 @@
+/* "Lắng đọng": slow full-screen slideshow. Duration comes from --dur on the element (set in reverie.js). */
+.reverie { position: fixed; inset: 0; z-index: var(--z-reverie); background: #000; opacity: 0; transition: opacity 0.8s; }
+.reverie.is-open { opacity: 1; }
+.reverie__layer {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transition: opacity 2.4s ease;
+}
+.reverie__layer.is-active { opacity: 1; animation: reverie-drift var(--dur) linear forwards; }
+@keyframes reverie-drift {
+  from { scale: 1.02; translate: 0 0; }
+  to { scale: var(--ks, 1.12); translate: var(--kx, 0%) var(--ky, 0%); }
+}
+.reverie.is-paused .reverie__layer.is-active,
+.reverie.is-paused .reverie__progress-fill { animation-play-state: paused; }
+.reverie__vignette {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 40%, rgb(0 0 0 / 0.65)), linear-gradient(to top, rgb(0 0 0 / 0.8), transparent 45%);
+}
+.reverie__caption { position: absolute; left: var(--gutter); bottom: calc(var(--gutter) + 1rem); display: grid; gap: 0.4rem; max-width: min(560px, 80vw); }
+.reverie__name { font: italic 350 var(--fs-xl) / 1.1 var(--f-display); }
+.reverie__meta { font: var(--fs-xs) var(--f-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.reverie__story { color: var(--muted); font-size: var(--fs-sm); }
+.reverie.is-changing .reverie__caption > * { animation: rise 1.6s var(--ease-out) both; }
+.reverie.is-changing .reverie__caption > :nth-child(2) { animation-delay: 0.15s; }
+.reverie.is-changing .reverie__caption > :nth-child(3) { animation-delay: 0.3s; }
+.reverie__ui { position: absolute; right: var(--gutter); bottom: var(--gutter); display: flex; gap: 0.5rem; transition: opacity 0.6s; }
+.reverie.is-idle .reverie__ui { opacity: 0; }
+.reverie.is-idle { cursor: none; }
+.reverie__btn {
+  width: 2.8rem; height: 2.8rem; border: 1px solid var(--line); border-radius: 50%;
+  background: rgb(0 0 0 / 0.3); backdrop-filter: blur(8px); font-size: 1.05rem; transition: border-color 0.3s, color 0.3s;
+}
+.reverie__btn:hover { border-color: var(--accent); color: var(--accent); }
+.reverie__progress { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: rgb(255 255 255 / 0.1); }
+.reverie__progress-fill { display: block; height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; }
+.reverie.is-changing .reverie__progress-fill { animation: reverie-fill var(--dur) linear forwards; }
+@keyframes reverie-fill { to { transform: scaleX(1); } }

@@ -1,0 +1,19 @@
+/* Buttons and the museum "plate" (catalogue label). */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.9rem 1.7rem; border: 1px solid transparent; border-radius: 999px;
+  font: 600 var(--fs-sm) var(--f-body); letter-spacing: 0.02em; text-decoration: none; cursor: pointer;
+  transition: transform 0.4s var(--ease-out), background 0.3s, color 0.3s, border-color 0.3s;
+}
+.btn:hover { transform: translateY(-3px); }
+.btn:disabled { opacity: 0.5; pointer-events: none; }
+.btn--accent { background: var(--accent); color: var(--c-ink); }
+.btn--ghost { border-color: var(--line); color: var(--text); }
+.btn--ghost:hover { border-color: var(--accent); color: var(--accent); }
+.btn--ink { background: var(--c-ink); color: var(--c-paper); }
+
+.plate { display: flex; gap: 0.8rem; align-items: baseline; font: 400 var(--fs-xs) / 1.3 var(--f-mono); letter-spacing: 0.06em; color: var(--muted); }
+.plate__no { color: var(--accent); }
+.plate__title { color: var(--text); text-transform: uppercase; letter-spacing: 0.12em; }
+.plate__meta { margin-left: auto; text-align: right; }
+.plate--sm { margin-top: 0.7rem; font-size: 0.68rem; }

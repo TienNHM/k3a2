@@ -1,0 +1,19 @@
+/* Entry stylesheet. Order of the layers = order of precedence (later wins), so components never
+   fight with base styles and pages can override components without !important. */
+@layer tokens, base, layout, components, pages;
+
+@import url("tokens.css") layer(tokens);
+@import url("base.css") layer(base);
+@import url("layout.css") layer(layout);
+
+@import url("components/shell.css") layer(components);
+@import url("components/controls.css") layer(components);
+@import url("components/viewer.css") layer(components);
+@import url("components/reverie.css") layer(components);
+@import url("components/wall.css") layer(components);
+@import url("components/film.css") layer(components);
+@import url("components/media.css") layer(components);
+
+@import url("pages/lobby.css") layer(pages);
+@import url("pages/room.css") layer(pages);
+@import url("pages/sub.css") layer(pages);

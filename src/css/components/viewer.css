@@ -1,0 +1,35 @@
+/* Full-screen photo viewer. */
+.viewer {
+  position: fixed; inset: 0; z-index: var(--z-viewer);
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; grid-template-rows: minmax(0, 1fr) auto; align-items: center;
+  padding: 1rem; background: rgb(8 6 5 / 0.96);
+  opacity: 0; visibility: hidden; transition: opacity 0.4s, visibility 0s 0.4s;
+}
+.viewer.is-open { opacity: 1; visibility: visible; transition: opacity 0.4s; }
+.viewer__bg {
+  position: absolute; inset: 0; z-index: -1; background-size: cover; background-position: center;
+  filter: blur(60px) saturate(1.4) brightness(0.45); scale: 1.2;
+}
+.viewer__stage { grid-column: 2; display: grid; justify-items: center; gap: 1rem; min-width: 0; }
+.viewer__img {
+  max-width: 100%; max-height: calc(100vh - 12rem);
+  border: clamp(6px, 1vw, 12px) solid var(--c-paper); box-shadow: var(--sh-frame);
+}
+.viewer__img.is-in { animation: viewer-in 0.7s var(--ease-out) both; }
+@keyframes viewer-in { from { opacity: 0; scale: 0.96; translate: 0 12px; } }
+.viewer .plate { width: min(100%, 720px); }
+.viewer__nav { font-size: 3rem; line-height: 1; padding: 1rem; color: var(--muted); transition: color 0.3s, translate 0.3s; }
+.viewer__nav:hover { color: var(--accent); }
+.viewer__nav--prev:hover { translate: -6px 0; }
+.viewer__nav--next:hover { translate: 6px 0; }
+.viewer__close { position: absolute; top: 0.6rem; right: 1rem; font-size: 2.6rem; line-height: 1; padding: 0.5rem 1rem; color: var(--muted); }
+.viewer__close:hover { color: var(--accent); }
+.viewer__bar { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 1rem; }
+.viewer__count { font: var(--fs-xs) var(--f-mono); letter-spacing: 0.14em; color: var(--muted); }
+@media (max-width: 640px) {
+  .viewer { grid-template-columns: 1fr; }
+  .viewer__stage { grid-column: 1; }
+  .viewer__nav { position: absolute; top: 50%; translate: 0 -50%; padding: 0.5rem; z-index: 2; font-size: 2.2rem; }
+  .viewer__nav--prev { left: 0; }
+  .viewer__nav--next { right: 0; }
+}

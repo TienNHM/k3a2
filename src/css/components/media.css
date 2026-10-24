@@ -1,0 +1,7 @@
+/* YouTube facades: a poster until clicked, then the real player. */
+.videos { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 1.2rem; max-width: var(--max); margin-inline: auto; }
+.video { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: var(--r-md); background: #000; box-shadow: var(--sh-frame); }
+.video img, .video iframe { width: 100%; height: 100%; object-fit: cover; border: 0; }
+.video__play { position: absolute; inset: 0; display: grid; place-items: center; font-size: 2.6rem; color: #fff; text-shadow: 0 2px 14px rgb(0 0 0 / 0.6); transition: scale 0.4s var(--ease-out); }
+.video:hover .video__play { scale: 1.2; }
+.video__title { position: absolute; inset: auto 0 0; padding: 1.6rem 1rem 0.8rem; text-align: left; font: 600 var(--fs-sm) var(--f-body); background: linear-gradient(transparent, rgb(0 0 0 / 0.75)); }

@@ -1,0 +1,82 @@
+/* Design tokens — the only place raw colours, sizes and timings are defined.
+   Components read these; change a token and the whole site follows. */
+:root {
+  /* Palette: a gallery at night, lit by the colour of the room you are in. */
+  --c-ink: #0b0908;
+  --c-night: #120e0c;
+  --c-night-2: #1a1411;
+  --c-night-3: #251c17;
+  --c-paper: #f2e9d7;
+  --c-paper-2: #e4d6ba;
+  --c-chalk: #faf6ee;
+  --c-gold: #f0b44a;
+
+  /* The accent follows --hue, which each room overrides (see content/rooms.js). */
+  --hue: 14;
+  --accent: hsl(var(--hue) 100% 62%);
+  --accent-soft: hsl(var(--hue) 100% 62% / 0.16);
+
+  --bg: var(--c-night);
+  --bg-2: var(--c-night-2);
+  --text: var(--c-chalk);
+  --muted: rgb(250 246 238 / 0.62);
+  --line: rgb(250 246 238 / 0.14);
+
+  /* Type */
+  --f-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --f-body: "Be Vietnam Pro", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --f-hand: "Dancing Script", "Segoe Script", cursive;
+
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-md: 1rem;
+  --fs-lg: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
+  --fs-xl: clamp(1.6rem, 1.2rem + 2vw, 2.6rem);
+  --fs-2xl: clamp(2.2rem, 1.4rem + 4vw, 4.6rem);
+  --fs-3xl: clamp(3rem, 1.2rem + 8vw, 9rem);
+  --fs-hero: clamp(3.4rem, 0.8rem + 12vw, 12rem);
+
+  /* Space & shape */
+  --sp-3: 0.75rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 5rem;
+  --sp-9: clamp(5rem, 12vw, 10rem);
+  --gutter: clamp(1.1rem, 4vw, 3.5rem);
+  --max: 1280px;
+  --r-md: 14px;
+  --r-lg: 28px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Depth */
+  --sh-frame: 0 1px 0 rgb(255 255 255 / 0.06) inset, 0 30px 60px -20px rgb(0 0 0 / 0.7), 0 12px 24px -12px rgb(0 0 0 / 0.6);
+
+  /* Film grain, shared by the page overlay and the time machine. */
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  /* Stacking order */
+  --z-grain: 40;
+  --z-menu: 49;
+  --z-nav: 50;
+  --z-viewer: 80;
+  --z-reverie: 90;
+  --z-curtain: 100;
+  --z-gate: 110;
+  --z-cursor: 120;
+}
+
+/* A light "paper" surface for contrast sections (footer, polaroid table). */
+.theme-paper {
+  --bg: var(--c-paper);
+  --bg-2: var(--c-paper-2);
+  --text: var(--c-ink);
+  --muted: rgb(11 9 8 / 0.62);
+  --line: rgb(11 9 8 / 0.18);
+  background: var(--bg);
+  color: var(--text);
+}

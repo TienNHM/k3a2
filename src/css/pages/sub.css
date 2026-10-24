@@ -1,0 +1,58 @@
+/* Secondary pages: page header, people, wishes (lắng đọng), places. */
+
+.phead {
+  position: relative; min-height: 70svh; display: grid; align-items: end; overflow: hidden;
+  padding: 9rem var(--gutter) 4rem;
+  background: radial-gradient(60% 70% at 85% 30%, hsl(var(--hue) 100% 50% / 0.22), transparent 70%), var(--c-night);
+}
+.phead__copy { position: relative; z-index: 2; display: grid; gap: 1.4rem; justify-items: start; max-width: 900px; }
+.phead__title { font: 300 var(--fs-3xl) / 0.9 var(--f-display); letter-spacing: -0.045em; }
+.phead__chalk { width: min(420px, 70%); height: 1.6rem; overflow: visible; }
+.phead__chalk path { fill: none; stroke: var(--c-gold); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; vector-effect: non-scaling-stroke; }
+.is-entered .phead__chalk path { animation: draw 1.6s var(--ease-out) 1.2s forwards; }
+.phead__art { position: absolute; right: 8%; top: 18%; width: clamp(140px, 22vw, 340px); aspect-ratio: 3 / 4; pointer-events: none; }
+.phead__arch { position: absolute; inset: 0; border: 1px solid var(--accent); border-radius: 999px 999px 14px 14px; opacity: 0.5; animation: float 8s ease-in-out infinite alternate; }
+.phead__dot { position: absolute; left: -18%; bottom: 8%; width: 40%; aspect-ratio: 1; border-radius: 50%; background: var(--accent); mix-blend-mode: screen; opacity: 0.85; animation: float 10s ease-in-out infinite alternate-reverse; }
+
+/* People */
+.people { padding: var(--sp-8) var(--gutter) var(--sp-9); background: var(--c-night-2); }
+.people__grid { max-width: var(--max); margin-inline: auto; display: grid; gap: 2rem; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.person { min-height: 380px; perspective: 1200px; outline-offset: 6px; }
+.person__inner { position: relative; width: 100%; height: 100%; min-height: 380px; transform-style: preserve-3d; transition: transform 0.9s var(--ease-out); }
+.person:hover .person__inner, .person:focus .person__inner, .person:focus-within .person__inner { transform: rotateY(180deg); }
+.person__face {
+  position: absolute; inset: 0; display: grid; align-content: center; justify-items: center; gap: 0.7rem; padding: 2rem 1.4rem; text-align: center;
+  border: 1px solid var(--line); border-radius: 999px 999px 16px 16px; backface-visibility: hidden; background: var(--c-night-3);
+}
+.person__back { transform: rotateY(180deg); background: var(--accent); color: var(--c-ink); border-color: transparent; }
+.person__back .eyebrow { color: var(--c-ink); }
+.person__avatar { width: 96px; height: 96px; display: grid; place-items: center; overflow: hidden; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--c-gold)); font: 400 2.4rem var(--f-display); color: var(--c-ink); }
+.person__avatar img { width: 100%; height: 100%; object-fit: cover; }
+.person__name { font: 400 var(--fs-lg) / 1.15 var(--f-display); }
+.person__role { font: var(--fs-xs) var(--f-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.person__quote { font: italic 300 var(--fs-md) / 1.4 var(--f-display); color: var(--muted); }
+.person__now { font-size: var(--fs-sm); }
+
+/* Wishes */
+.wishes { display: grid; gap: var(--sp-8); padding: var(--sp-9) var(--gutter); background: var(--c-night); }
+.wishes__stage { display: grid; place-content: center; gap: 1.5rem; max-width: 960px; min-height: 46vh; margin-inline: auto; text-align: center; }
+.wishes__quote { opacity: 0; font: italic 300 clamp(2rem, 5.4vw, 4.4rem) / 1.12 var(--f-display); letter-spacing: -0.02em; text-wrap: balance; }
+.wishes__quote.is-in { animation: wish-in 1.8s var(--ease-out) forwards; }
+@keyframes wish-in { from { opacity: 0; filter: blur(10px); translate: 0 14px; } to { opacity: 1; filter: none; translate: none; } }
+.wishes__from { font: var(--fs-sm) var(--f-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.wishes__slips { display: grid; gap: 1.6rem; max-width: var(--max); margin-inline: auto; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+.slip { padding: 1.5rem; background: #f6e7a8; color: #3b3220; box-shadow: var(--sh-frame); rotate: var(--r); font: 600 1.5rem / 1.35 var(--f-hand); }
+.slip span { display: block; margin-top: 0.8rem; font-size: 1.05rem; text-align: right; opacity: 0.7; }
+
+/* Places */
+.places { display: grid; align-items: start; gap: var(--sp-6); max-width: calc(var(--max) + 2 * var(--gutter)); margin-inline: auto; padding: var(--sp-8) var(--gutter) var(--sp-9); grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.6fr); }
+.places__list { display: grid; align-content: start; }
+.place { display: grid; width: 100%; gap: 0.2rem 1rem; padding: 1.1rem 1rem; text-align: left; border-top: 1px solid var(--line); grid-template-columns: 2.4rem 1fr; transition: background 0.3s, padding 0.4s var(--ease-out); }
+.place:hover, .place.is-active { padding-left: 1.6rem; background: var(--accent-soft); }
+.place__no { font: var(--fs-xs) var(--f-mono); color: var(--muted); }
+.place__name { font: 350 var(--fs-lg) var(--f-display); }
+.place__note { grid-column: 2; font-size: var(--fs-sm); color: var(--muted); }
+.places__stage { position: relative; aspect-ratio: 4 / 3; overflow: hidden; border-radius: var(--r-lg); box-shadow: var(--sh-frame); background: var(--c-night-3); }
+.places__map { width: 100%; height: 100%; border: 0; filter: grayscale(1) sepia(0.45) contrast(0.95) brightness(0.85) hue-rotate(-12deg); }
+.places__open { position: absolute; right: 1rem; bottom: 1rem; padding: 0.5rem 1rem; border-radius: 999px; background: var(--c-ink); font: var(--fs-xs) var(--f-mono); text-decoration: none; }
+@media (max-width: 860px) { .places { grid-template-columns: 1fr; } }

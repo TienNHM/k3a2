@@ -1,24 +1,58 @@
-# Trang kỷ niệm lớp K3A2
+# K3A2 — Triển lãm kỷ niệm
 
-Site tĩnh (HTML/CSS/JS), không cần build. Mở `index.html` hoặc chạy `npx serve` để xem.
+Website tĩnh (HTML + CSS + JavaScript module, **không cần build**) lưu giữ ký ức của lớp K3A2, THPT Châu Thành 1, Đồng Tháp.
+Giao diện theo hướng một triển lãm trực tuyến: sảnh, các phòng trưng bày theo chủ đề, dòng thời gian, cỗ máy thời gian, chế độ "Lắng đọng".
 
-## Sửa nội dung
-Chỉnh `data.js`: tên lớp, trường, mốc thời gian, thành viên, lưu bút, link nhóm chat.
+## Chạy thử trên máy
 
-## Thêm ảnh từ Google Photos
-Google Photos không cho nhúng ảnh trực tiếp ổn định, nên tải ảnh về rồi để trong repo:
+JavaScript module không chạy khi mở file trực tiếp (`file://`), cần một server tĩnh bất kỳ:
 
-1. Mở album trên Google Photos → **⋮ → Tải xuống tất cả** (hoặc dùng [Google Takeout](https://takeout.google.com) nếu nhiều ảnh).
-2. Giải nén vào `photos/`, mỗi album một thư mục con, ví dụ `photos/2016-van-nghe/`.
-   Ảnh đại diện thành viên để trong `photos/avatars/`.
-3. Nên nén ảnh (~1600px cạnh dài, <500KB) để web tải nhanh.
-4. Chạy:
+```bash
+npx serve .
+```
+
+## Cấu trúc
+
+```
+index.html, con-nguoi.html, dia-diem.html, lang-dong.html   trang viết tay (chỉ là khung ghép thành phần)
+<phong>.html                                                trang phòng — TỰ SINH, đừng sửa tay
+src/content/    NỘI DUNG: chỉnh ở đây, không cần đụng code
+src/js/         ENGINE (core/) + THÀNH PHẦN (components/)
+src/css/        design system: tokens → base → layout → components → pages
+photos/         ảnh: photos/<Phòng>/<Bộ sưu tập>/NNN.jpg (+ thumbs/)
+tools/          script PowerShell để nhập ảnh và sinh dữ liệu
+docs/           tài liệu kiến trúc
+```
+
+Chi tiết và cách mở rộng: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
+## Việc thường làm
+
+| Muốn | Làm |
+|---|---|
+| Đổi tên lớp, tiêu đề, link nhóm chat | sửa `src/content/site.js` |
+| Đổi mô tả/màu/ảnh bìa của một phòng | sửa `src/content/rooms.js` |
+| Thêm ngày, địa điểm, câu chuyện cho một bộ sưu tập | sửa `src/content/albums.js` |
+| Sửa dòng thời gian | sửa `src/content/timeline.js` |
+| Điền tên bạn bè, lưu bút | sửa `src/content/people.js` |
+| Thêm địa điểm trên bản đồ | sửa `src/content/places.js` |
+| Thêm video YouTube | sửa `src/content/videos.js` |
+
+## Thêm ảnh
+
+1. Tải album từ Google Photos (⋮ → *Tải xuống tất cả*).
+2. Nhập vào repo (nén ảnh, tạo ảnh thu nhỏ, **giữ video riêng ngoài repo** ở `~/Videos/K3A2/<Bộ sưu tập>`):
    ```powershell
-   powershell -ExecutionPolicy Bypass -File tools/gen-photos.ps1
+   ./tools/import-album.ps1 -Zip album-1-001.zip -Topic "Cuối cấp" -Album "Buổi học cuối cùng"
    ```
-   Lệnh này tạo lại `photos.js`; tên thư mục thành bộ lọc album, tên file thành chú thích.
+   `-Topic` là tên **phòng**, `-Album` là tên **bộ sưu tập**. Thêm `-VideosOnly` để chỉ lấy video.
+3. Lọc ảnh trùng: `./tools/dedupe-photos.ps1` (thêm `-DryRun` để xem trước).
+4. Sinh lại dữ liệu và trang phòng: `./tools/gen-photos.ps1`.
 
-## Đưa lên mạng (miễn phí)
-Push repo lên GitHub → Settings → Pages → chọn branch `main`, hoặc kéo thả thư mục vào Netlify.
+Ảnh muốn loại nhưng chưa xóa hẳn: chuyển vào `photos/_removed/` (bị bỏ qua, không đưa lên GitHub).
 
-> Lưu ý riêng tư: đã public thì ai cũng xem được ảnh. Hỏi ý các bạn trước khi đăng, hoặc dùng Netlify có đặt mật khẩu.
+## Đưa lên mạng
+
+GitHub Pages: *Settings → Pages →* nhánh `master`, thư mục `/ (root)`. File `CNAME` giữ tên miền riêng, `.nojekyll` bỏ qua bước Jekyll.
+
+> Ảnh có mặt các bạn cùng lớp: hãy hỏi ý trước khi đăng công khai.
