@@ -20,6 +20,14 @@
 .person { min-height: 380px; perspective: 1200px; outline-offset: 6px; }
 .person__inner { position: relative; width: 100%; height: 100%; min-height: 380px; transform-style: preserve-3d; transition: transform 0.9s var(--ease-out); }
 .person:hover .person__inner, .person:focus .person__inner, .person:focus-within .person__inner { transform: rotateY(180deg); }
+.people__count { max-width: var(--max); margin: 0 auto var(--sp-6); font: var(--fs-xs) var(--f-mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+/* A card with nothing on its back does not turn over; it just lifts a little. */
+.person--plain, .person--plain .person__inner { min-height: 250px; }
+.person--plain .person__inner { transition: translate 0.5s var(--ease-out); }
+.person--plain:hover .person__inner { transform: none; translate: 0 -6px; }
+.person--teacher .person__avatar { outline: 2px solid var(--c-gold); outline-offset: 4px; }
+.person--teacher .person__role { color: var(--c-gold); }
+.person--teacher .person__face { border-color: var(--c-gold); }
 .person__face {
   position: absolute; inset: 0; display: grid; align-content: center; justify-items: center; gap: 0.7rem; padding: 2rem 1.4rem; text-align: center;
   border: 1px solid var(--line); border-radius: 999px 999px 16px 16px; backface-visibility: hidden; background: var(--c-night-3);
