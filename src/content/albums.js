@@ -23,6 +23,7 @@ export const albumMeta = {
   'Đám cưới Chùm me': { year: 2017 },
 
   'Giờ nghỉ trưa': { year: 2018, dates: '30/08/2017 – 13/06/2018' },
+  'Lao động': { year: 2017, dates: '13/03 – 13/04/2017', place: 'THPT Châu Thành 1' },
   'Lớp 11 (2016)': { year: 2016 },
   'Lớp 12 (2018)': { year: 2018 },
 };
