@@ -34,6 +34,8 @@ Tên phòng/bộ sưu tập trong `content/*.js` phải **khớp tên thư mục
 - **Mỗi thành phần** là `export default function mount(el)`; đọc tuỳ chọn từ `el.dataset`; thêm class gốc cho chính nó; không đụng phần tử ngoài `el` (trừ lớp phủ toàn trang như viewer/reverie, tự tạo khi cần).
 - **CSS theo lớp** (`@layer tokens, base, layout, components, pages`): lớp sau thắng lớp trước, nên không cần `!important`. Mọi màu, cỡ chữ, khoảng cách, thời gian nằm ở `tokens.css`. Màu nhấn của phòng đi theo biến `--hue`.
 - **Chuyển động**: dùng thuộc tính `translate`/`rotate`/`scale` riêng lẻ cho hiệu ứng CSS (reveal, nghiêng khung) để không đụng `transform` mà GSAP dùng. Hiệu ứng vào trang chạy khi `<html>` có class `is-entered`.
+- **Lưới và hàng cuộn**: ô lưới một cột phải khai báo `minmax(0, 1fr)`, và phần tử lưới có `margin-inline: auto` phải có `width: 100%`. Nếu không, một dòng chữ dài hoặc một cuộn phim rộng sẽ làm giãn cả lưới; trên điện thoại trình duyệt khi đó thu nhỏ cả trang. `layout.css` đã gom sẵn các khối một cột; khối mới nên thêm vào danh sách `:where(...)` đó.
+- **Âm thanh**: mọi âm thanh đi qua `core/audio.js` (tổng hợp bằng Web Audio, không có file). Chỉ phát sau khi người xem bật; thành phần chỉ gọi `sfx('tên')` / `setMood('tên')`, không tự tạo `AudioContext`.
 - **Truy cập**: nút thật cho mọi thao tác, `aria-label` cho nút biểu tượng, `Esc`/mũi tên cho viewer, tôn trọng `prefers-reduced-motion`.
 
 ## Công thức mở rộng

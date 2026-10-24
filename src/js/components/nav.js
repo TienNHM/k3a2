@@ -3,6 +3,8 @@
 import { h } from '../core/dom.js';
 import { site } from '../../content/site.js';
 import { rooms } from '../core/data.js';
+import { sfx } from '../core/audio.js';
+import { createSoundToggle } from './sound-toggle.js';
 
 const pad = (n) => String(n).padStart(2, '0');
 
@@ -38,7 +40,7 @@ export function mountNav(activeKey) {
     h('a', { class: 'nav__brand', href: 'index.html', 'aria-label': `${site.name} — về sảnh` },
       h('span', { class: 'nav__brand-name' }, site.name),
       h('span', { class: 'nav__brand-sub' }, site.exhibit.kicker)),
-    toggle);
+    h('div', { class: 'nav__tools' }, createSoundToggle(), toggle));
 
   document.body.prepend(bar, menu);
 
@@ -48,7 +50,7 @@ export function mountNav(activeKey) {
     document.documentElement.classList.toggle('is-locked', open);
     toggle.querySelector('.nav__toggle-label').textContent = open ? 'Đóng' : 'Lối đi';
   };
-  toggle.addEventListener('click', () => setOpen(!menu.classList.contains('is-open')));
+  toggle.addEventListener('click', () => { sfx('tick'); setOpen(!menu.classList.contains('is-open')); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
   menu.addEventListener('click', (e) => { if (e.target.closest('a')) setOpen(false); });
 

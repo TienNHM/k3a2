@@ -30,11 +30,33 @@
 .nav__toggle[aria-expanded="true"] .nav__bars::before { top: 50%; transform: rotate(45deg); }
 .nav__toggle[aria-expanded="true"] .nav__bars::after { top: 50%; transform: rotate(-45deg); }
 
+/* ---- Sound button: a tiny equaliser ---- */
+.nav__tools { display: flex; align-items: center; gap: 0.6rem; }
+.nav__sound {
+  position: relative; width: 2.6rem; height: 2.6rem; display: grid; place-items: center;
+  border: 1px solid var(--line); border-radius: 50%; background: rgb(11 9 8 / 0.4); backdrop-filter: blur(10px);
+  transition: border-color 0.3s, color 0.3s;
+}
+.nav__sound:hover { border-color: var(--accent); }
+.eq { display: flex; align-items: flex-end; gap: 2px; height: 14px; }
+.eq i { width: 2px; height: 4px; border-radius: 1px; background: currentColor; }
+/* Muted: a slash through the bars. */
+.nav__sound::after { content: ""; position: absolute; width: 46%; height: 1.5px; background: currentColor; rotate: -45deg; transition: opacity 0.3s; }
+.nav__sound.is-on::after, .nav__sound.is-pending::after { opacity: 0; }
+.nav__sound.is-on { color: var(--accent); border-color: var(--accent); }
+.nav__sound.is-on .eq i { animation: eq 0.9s ease-in-out infinite alternate; }
+.nav__sound.is-on .eq i:nth-child(2) { animation-delay: -0.3s; }
+.nav__sound.is-on .eq i:nth-child(3) { animation-delay: -0.6s; }
+.nav__sound.is-on .eq i:nth-child(4) { animation-delay: -0.15s; }
+.nav__sound.is-pending { animation: pulse 2s ease-in-out infinite; }
+@keyframes eq { from { height: 3px; } to { height: 14px; } }
+@keyframes pulse { 50% { box-shadow: 0 0 0 6px var(--accent-soft); } }
+
 /* ---- Menu ("Lối đi") ---- */
 .menu {
   position: fixed; inset: 0; z-index: var(--z-menu);
   display: grid; align-content: center; gap: 1.5rem;
-  padding: 6rem var(--gutter) 3rem; background: var(--c-night-2);
+  padding: 7rem var(--gutter) 3rem; background: var(--c-night-2);
   visibility: hidden; overflow-y: auto;
   clip-path: circle(0% at calc(100% - 3.5rem) 2.4rem);
   transition: clip-path 0.8s var(--ease-io), visibility 0s 0.8s;
@@ -100,14 +122,16 @@
 .gate.is-open .gate__center { opacity: 0; scale: 1.2; pointer-events: none; }
 .gate__title { font: 300 clamp(5rem, 22vw, 16rem) / 0.85 var(--f-display); letter-spacing: -0.05em; }
 .gate__note { color: var(--muted); }
+.gate__actions { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; margin-top: 0.4rem; }
+.gate__hint { max-width: 46ch; font: var(--fs-xs) / 1.5 var(--f-mono); letter-spacing: 0.04em; color: var(--muted); }
 .gate__bar { width: min(320px, 70vw); height: 2px; background: var(--line); overflow: hidden; }
 .gate__bar-fill { display: block; height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
 
 /* ---- Footer ---- */
 .footer { padding: var(--sp-8) var(--gutter) var(--sp-6); overflow: hidden; }
 .footer__big {
-  font: 300 clamp(4rem, 19vw, 17rem) / 0.9 var(--f-display); letter-spacing: -0.05em; white-space: nowrap;
+  padding-bottom: 0.1em; font: 300 clamp(4rem, 21vw, 21rem) / 1.05 var(--f-display); letter-spacing: -0.05em; white-space: nowrap;
   color: transparent; -webkit-text-stroke: 1.5px var(--c-ink);
 }
-.footer__row { display: flex; flex-wrap: wrap; gap: 1.5rem 3rem; justify-content: space-between; align-items: center; margin-top: var(--sp-6); font-size: var(--fs-sm); }
+.footer__row { display: flex; flex-wrap: wrap; gap: 1.5rem 3rem; justify-content: space-between; align-items: center; margin-top: var(--sp-5); font-size: var(--fs-sm); }
 .footer__top { font: 500 var(--fs-xs) var(--f-mono); letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; }

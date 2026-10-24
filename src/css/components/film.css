@@ -2,7 +2,9 @@
    so they scroll together with the frames. */
 .coll__film { margin-top: var(--sp-8); }
 .coll__film-title { max-width: var(--max); margin: 0 auto 1.5rem; padding-inline: var(--gutter); font: italic 300 var(--fs-xl) var(--f-display); }
-.rolls { display: grid; gap: var(--sp-6); }
+/* minmax(0, 1fr): a grid track may shrink below its content, otherwise a long film strip would stretch the whole page. */
+.rolls { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--sp-6); }
+.roll { min-width: 0; }
 .roll__head { display: flex; align-items: center; gap: 1.5rem; max-width: calc(var(--max) + 2 * var(--gutter)); margin: 0 auto 0.8rem; padding-inline: var(--gutter); }
 .roll__count { margin-right: auto; font: var(--fs-xs) var(--f-mono); color: var(--muted); }
 .roll__ctrl { display: flex; gap: 0.5rem; }
@@ -10,7 +12,7 @@
 .roll__btn:hover { border-color: var(--accent); color: var(--accent); }
 .roll__track {
   display: flex; gap: 0.55rem; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: thin; scrollbar-color: var(--accent) transparent;
-  padding: 28px var(--gutter);
+  padding: 28px var(--gutter); scroll-padding-inline: var(--gutter);
   background:
     repeating-linear-gradient(to right, transparent 0 14px, rgb(250 246 238 / 0.8) 14px 26px, transparent 26px 40px) left top 8px / 100% 11px no-repeat,
     repeating-linear-gradient(to right, transparent 0 14px, rgb(250 246 238 / 0.8) 14px 26px, transparent 26px 40px) left bottom 8px / 100% 11px no-repeat,
@@ -19,7 +21,7 @@
   cursor: grab;
 }
 .roll__track.is-dragging { cursor: grabbing; scroll-snap-type: none; }
-.roll__frame { position: relative; flex: none; height: clamp(150px, 20vw, 220px); overflow: hidden; scroll-snap-align: start; outline: 1px solid rgb(255 255 255 / 0.08); }
+.roll__frame { position: relative; flex: none; height: clamp(150px, 20vw, 220px); overflow: hidden; scroll-snap-align: start; outline: 1px solid rgb(255 255 255 / 0.08); background: var(--skeleton) 0 0 / 200% 100%; animation: shimmer 1.8s linear 6; min-width: clamp(120px, 14vw, 200px); }
 .roll__frame img { height: 100%; width: auto; transition: scale 0.6s var(--ease-out), filter 0.4s; filter: saturate(0.85) brightness(0.9); pointer-events: none; }
 .roll__frame:hover img { scale: 1.06; filter: none; }
 .roll__no { position: absolute; left: 6px; bottom: 4px; font: 500 0.58rem var(--f-mono); letter-spacing: 0.1em; color: var(--c-gold); text-shadow: 0 1px 3px #000; }

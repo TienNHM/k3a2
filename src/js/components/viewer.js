@@ -3,6 +3,7 @@
 import { h, photoUrl } from '../core/dom.js';
 import { albumOf, catalogNo } from '../core/data.js';
 import { startReverie } from './reverie.js';
+import { sfx } from '../core/audio.js';
 
 let root, img, bg, no, title, meta, count;
 let list = [];
@@ -67,6 +68,7 @@ function render() {
 
 function go(step) {
   index = (index + step + list.length) % list.length;
+  sfx('tick');
   render();
 }
 
@@ -88,6 +90,7 @@ export function openViewer(photos, start = 0) {
   list = photos;
   index = Math.max(0, Math.min(start, photos.length - 1));
   opener = document.activeElement;
+  sfx('shutter');
   render();
   root.classList.add('is-open');
   document.documentElement.classList.add('is-locked');

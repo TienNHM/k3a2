@@ -3,6 +3,7 @@
 
 import { h, photoUrl } from '../core/dom.js';
 import { albumOf, shuffle } from '../core/data.js';
+import { sfx } from '../core/audio.js';
 
 const SLIDE_MS = 8000;
 let root = null;
@@ -112,5 +113,6 @@ export function startReverie(photos, { shuffle: doShuffle = true, startAt = null
   document.addEventListener('keydown', onKey);
   root.addEventListener('pointermove', wake);
   wake();
+  sfx('chime', { gain: 0.06 });
   show(0);
 }

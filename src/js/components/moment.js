@@ -4,6 +4,7 @@ import { h, photoUrl } from '../core/dom.js';
 import { photos, pick, albumOf, roomByName } from '../core/data.js';
 import { dot } from '../core/format.js';
 import { openViewer } from './viewer.js';
+import { sfx } from '../core/audio.js';
 
 const MAX_STACK = 5;
 
@@ -41,6 +42,7 @@ export default function mount(el) {
     h('figcaption', null, h('span', { class: 'polaroid__name' }, p.album), h('span', { class: 'polaroid__meta' }, dot(album?.dates, album?.place))));
 
     table.append(card);
+    sfx('paper');
     while (table.children.length > MAX_STACK) table.firstElementChild.remove();
     link.hidden = false;
     link.href = `${room.slug}.html#${album?.slug ?? ''}`;

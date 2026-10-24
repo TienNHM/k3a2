@@ -37,6 +37,7 @@ Chi tiết và cách mở rộng: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 | Điền tên bạn bè, lưu bút | sửa `src/content/people.js` |
 | Thêm địa điểm trên bản đồ | sửa `src/content/places.js` |
 | Thêm video YouTube | sửa `src/content/videos.js` |
+| Chỉnh âm lượng, dùng nhạc nền riêng | sửa `src/content/audio.js` (âm thanh mặc định được tổng hợp trực tiếp, không cần file) |
 
 ## Thêm ảnh
 

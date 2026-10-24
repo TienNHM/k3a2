@@ -7,6 +7,7 @@ import { videos } from '../../content/videos.js';
 import { rooms, roomByName, featured } from '../core/data.js';
 import { splitChars, splitWords, gsap, canScrub } from '../core/motion.js';
 import { roman, pad, dot } from '../core/format.js';
+import { setMood } from '../core/audio.js';
 import { startReverie } from './reverie.js';
 import { wall, enhanceWalls } from './wall.js';
 import { rolls } from './filmstrip.js';
@@ -84,6 +85,7 @@ export default function mount(el) {
   }
 
   document.documentElement.style.setProperty('--hue', room.hue);
+  setMood(room.sound);
   document.title = `${room.name} — ${site.name}`;
 
   const roomVideos = videos.filter((v) => v.room === room.name);

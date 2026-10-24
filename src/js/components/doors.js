@@ -3,6 +3,7 @@
 import { h, photoUrl } from '../core/dom.js';
 import { rooms } from '../core/data.js';
 import { pad, dot } from '../core/format.js';
+import { sfx } from '../core/audio.js';
 
 export default function mount(el) {
   el.classList.add('doors');
@@ -11,6 +12,7 @@ export default function mount(el) {
   const door = (room, i) =>
     h('a', {
       class: 'door', href: `${room.slug}.html`, 'data-cursor': 'Bước vào',
+      onPointerenter: () => sfx('chime', { gain: 0.04 }),
       dataset: { hue: room.hue, reveal: '' },
       style: { '--hue': room.hue, '--i': i },
     },

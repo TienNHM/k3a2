@@ -6,6 +6,7 @@ import { timeline } from '../../content/timeline.js';
 import { present } from '../../content/people.js';
 import { roomByName, photosOfYear, pick, photos } from '../core/data.js';
 import { dot } from '../core/format.js';
+import { sfx } from '../core/audio.js';
 
 function photosForEra(era) {
   if (era.year === 'Nay') {
@@ -50,7 +51,7 @@ export default function mount(el) {
     label.textContent = dot(String(e.year), e.label);
     title.textContent = isNow ? present.title : e.title;
     text.textContent = isNow ? present.text : e.text;
-    img.classList.remove('is-in');
+    img.classList.remove('is-in', 'is-ghost');
     if (pool.length) {
       const p = pick(pool);
       empty.hidden = true;
@@ -60,9 +61,19 @@ export default function mount(el) {
       void img.offsetWidth;
       img.classList.add('is-in');
     } else {
-      img.hidden = true;
+      // No photo for this year: show the note over a dim, blurred ghost of the next year that has one.
+      const later = timeline.slice(i + 1).map(photosForEra).find((list) => list.length);
       empty.hidden = false;
       empty.textContent = e.emptyNote ?? 'Chưa có ảnh của năm này.';
+      if (later) {
+        img.hidden = false;
+        img.src = photoUrl(pick(later).src);
+        img.alt = '';
+        void img.offsetWidth;
+        img.classList.add('is-in', 'is-ghost');
+      } else {
+        img.hidden = true;
+      }
     }
   }
 
@@ -70,7 +81,7 @@ export default function mount(el) {
     const v = Number(range.value);
     el.style.setProperty('--past', (last ? 1 - v / last : 0).toFixed(3));
     const nearest = Math.round(v);
-    if (nearest !== era) { era = nearest; setEra(era); }
+    if (nearest !== era) { if (era !== -1) sfx('tick', { gain: 0.05 }); era = nearest; setEra(era); }
   }
 
   range.addEventListener('input', update);

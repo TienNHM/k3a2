@@ -18,11 +18,11 @@
 }
 .is-entered .art { opacity: 1; scale: 1; }
 .art img { width: 100%; height: 100%; object-fit: cover; animation: float 9s ease-in-out infinite alternate; scale: 1.15; }
-.art--1 { --delay: 0.2s; left: 5%; top: 14%; width: clamp(120px, 19vw, 300px); aspect-ratio: 3 / 4; border-radius: 999px 999px 8px 8px; }
-.art--2 { --delay: 0.35s; right: 7%; top: 12%; width: clamp(110px, 17vw, 260px); aspect-ratio: 1; border-radius: 50%; }
-.art--3 { --delay: 0.5s; left: 19%; bottom: 7%; width: clamp(150px, 24vw, 380px); aspect-ratio: 2 / 1; border-radius: 999px; }
-.art--4 { --delay: 0.65s; right: 16%; bottom: 5%; width: clamp(100px, 14vw, 220px); aspect-ratio: 2 / 3; border-radius: 999px 999px 8px 8px; }
-.art--5 { --delay: 0.8s; left: 44%; top: 6%; width: clamp(60px, 8vw, 120px); aspect-ratio: 1; border-radius: 50%; border: 3px solid var(--accent); }
+.art--1 { --delay: 0.2s; left: 3%; top: 15%; width: clamp(110px, 16vw, 270px); aspect-ratio: 3 / 4; border-radius: 999px 999px 8px 8px; }
+.art--2 { --delay: 0.35s; right: 3%; top: 12%; width: clamp(100px, 14vw, 230px); aspect-ratio: 1; border-radius: 50%; }
+.art--3 { --delay: 0.5s; left: 3%; bottom: 6%; width: clamp(140px, 20vw, 340px); aspect-ratio: 2 / 1; border-radius: 999px; }
+.art--4 { --delay: 0.65s; right: 3%; bottom: 5%; width: clamp(90px, 11vw, 190px); aspect-ratio: 2 / 3; border-radius: 999px 999px 8px 8px; }
+.art--5 { --delay: 0.8s; right: 24%; top: 7%; width: clamp(50px, 6vw, 96px); aspect-ratio: 1; border-radius: 50%; border: 3px solid var(--accent); }
 @media (max-width: 700px) {
   .art--1 { left: -8%; top: 10%; }
   .art--2 { right: -6%; top: 8%; }
@@ -79,7 +79,7 @@
   font: 300 clamp(6rem, 18vw, 15rem) / 0.8 var(--f-display); letter-spacing: -0.05em;
   color: transparent; -webkit-text-stroke: 1px rgb(250 246 238 / 0.22);
 }
-.tl__photo { position: relative; z-index: 1; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 999px 999px 10px 10px; background: var(--c-night-3); box-shadow: var(--sh-frame); }
+.tl__photo { position: relative; z-index: 1; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 999px 999px 10px 10px; background: var(--skeleton) 0 0 / 200% 100%; animation: shimmer 1.8s linear 6; box-shadow: var(--sh-frame); }
 .tl__photo img {
   width: 100%; height: 100%; object-fit: cover;
   filter: sepia(calc(var(--tone) * 0.9)) saturate(calc(1 - var(--tone) * 0.4)) contrast(calc(1 + var(--tone) * 0.08)) brightness(calc(1 - var(--tone) * 0.12));
@@ -105,7 +105,7 @@
 .doors__row { max-width: var(--max); margin-inline: auto; display: grid; align-items: start; gap: clamp(1.5rem, 3vw, 3rem); grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); }
 .door { --accent: hsl(var(--hue) 100% 62%); display: grid; gap: 1.1rem; text-decoration: none; }
 .door:nth-child(even) { margin-top: 3.5rem; }
-.door__arch { position: relative; overflow: hidden; aspect-ratio: 3 / 4.2; border-radius: 999px 999px 14px 14px; background: var(--c-night-3); box-shadow: var(--sh-frame); transition: box-shadow 0.6s; }
+.door__arch { position: relative; overflow: hidden; aspect-ratio: 3 / 4.2; border-radius: 999px 999px 14px 14px; background: var(--skeleton) 0 0 / 200% 100%; animation: shimmer 1.8s linear 6; box-shadow: var(--sh-frame); transition: box-shadow 0.6s; }
 .door__arch img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.8) brightness(0.8); transition: scale 1.2s var(--ease-out), filter 0.6s; }
 .door__glow { position: absolute; inset: 0; opacity: 0.55; mix-blend-mode: screen; background: radial-gradient(80% 60% at 50% 100%, hsl(var(--hue) 100% 60% / 0.5), transparent 70%); transition: opacity 0.6s; }
 .door:hover .door__arch { box-shadow: 0 0 0 1px var(--accent), 0 30px 80px -20px hsl(var(--hue) 100% 55% / 0.55); }
@@ -122,14 +122,15 @@
 .tm { --past: 0; padding: var(--sp-9) var(--gutter); background: var(--c-night); }
 .tm__head { max-width: var(--max); margin: 0 auto var(--sp-7); display: grid; gap: 1rem; }
 .tm__stage { position: relative; max-width: 1100px; margin: 0 auto; aspect-ratio: 16 / 9; }
-.tm__frame { position: absolute; inset: 0; overflow: hidden; border-radius: var(--r-md); background: var(--c-night-3); box-shadow: var(--sh-frame); }
+.tm__frame { position: absolute; inset: 0; overflow: hidden; border-radius: var(--r-md); background: var(--skeleton) 0 0 / 200% 100%; animation: shimmer 1.8s linear 6; box-shadow: var(--sh-frame); }
 .tm__img {
   width: 100%; height: 100%; object-fit: cover; opacity: 0; scale: 1.06;
   filter: sepia(calc(var(--past) * 0.85)) saturate(calc(1 - var(--past) * 0.5)) contrast(calc(1 + var(--past) * 0.12)) blur(calc(var(--past) * 1.6px)) brightness(calc(1 - var(--past) * 0.1));
   transition: filter 0.4s;
 }
 .tm__img.is-in { opacity: 1; scale: 1; transition: opacity 1s, scale 1.6s var(--ease-out), filter 0.4s; }
-.tm__empty { position: absolute; inset: 0; display: grid; place-items: center; padding: 2rem; text-align: center; font: italic 300 var(--fs-xl) var(--f-display); color: var(--muted); }
+.tm__img.is-ghost { filter: sepia(1) blur(16px) brightness(0.5); }
+.tm__empty { z-index: 1; position: absolute; inset: 0; display: grid; place-items: center; padding: 2rem; text-align: center; font: italic 300 var(--fs-xl) var(--f-display); color: var(--muted); }
 .tm__grain { position: absolute; inset: 0; pointer-events: none; background-image: var(--noise); mix-blend-mode: overlay; opacity: calc(var(--past) * 0.6); }
 .tm__veil { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at center, transparent calc(75% - var(--past) * 35%), rgb(30 15 5 / calc(0.2 + var(--past) * 0.6)) 100%); }
 .tm__year { position: absolute; left: -0.03em; bottom: -0.2em; z-index: 2; pointer-events: none; font: 300 clamp(5rem, 16vw, 14rem) / 1 var(--f-display); letter-spacing: -0.05em; text-shadow: 0 6px 40px rgb(0 0 0 / 0.6); }

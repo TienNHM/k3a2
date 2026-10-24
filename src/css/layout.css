@@ -4,7 +4,15 @@
 .section { padding: var(--sp-9) var(--gutter); }
 .section__head { max-width: var(--max); margin: 0 auto var(--sp-7); display: grid; gap: 1rem; }
 
+/* Single-column stacks must be allowed to shrink (minmax(0, 1fr)); with the default `auto` track a long
+   line of text or a wide child stretches the grid, and on phones the browser then zooms the whole page out. */
+:where(.hero__copy, .rhero__copy, .phead__copy, .moment__copy, .invite__inner, .doors__head, .tm__head, .section__head,
+  .wishes, .wishes__stage, .tl__intro, .tl__body, .door, .tm__card, .polaroid figcaption) {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 /* Shared keyframes used by several components. */
+@keyframes shimmer { to { background-position: -200% 0; } }
 @keyframes float { from { translate: 0 -10px; rotate: -1deg; } to { translate: 0 12px; rotate: 1deg; } }
 @keyframes spin { to { rotate: 360deg; } }
 @keyframes draw { to { stroke-dashoffset: 0; } }

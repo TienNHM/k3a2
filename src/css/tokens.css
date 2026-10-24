@@ -35,7 +35,7 @@
   --fs-xl: clamp(1.6rem, 1.2rem + 2vw, 2.6rem);
   --fs-2xl: clamp(2.2rem, 1.4rem + 4vw, 4.6rem);
   --fs-3xl: clamp(3rem, 1.2rem + 8vw, 9rem);
-  --fs-hero: clamp(3.4rem, 0.8rem + 12vw, 12rem);
+  --fs-hero: clamp(3.4rem, 0.8rem + 10vw, 11rem);
 
   /* Space & shape */
   --sp-3: 0.75rem;
@@ -55,6 +55,9 @@
 
   /* Depth */
   --sh-frame: 0 1px 0 rgb(255 255 255 / 0.06) inset, 0 30px 60px -20px rgb(0 0 0 / 0.7), 0 12px 24px -12px rgb(0 0 0 / 0.6);
+
+  /* Placeholder shown behind photos while they load (animated by `shimmer`, see layout.css). */
+  --skeleton: linear-gradient(110deg, var(--c-night-3) 30%, #35281f 50%, var(--c-night-3) 70%);
 
   /* Film grain, shared by the page overlay and the time machine. */
   --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");

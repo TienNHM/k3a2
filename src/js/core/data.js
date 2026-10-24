@@ -64,6 +64,7 @@ function buildRooms() {
         hue: meta.hue ?? 14,
         kicker: meta.kicker ?? '',
         mood: meta.mood ?? '',
+        sound: meta.sound, // ambient palette: 'wistful' | 'bright' | 'tender' | 'warm' (see core/audio.js)
         desc: meta.desc ?? '',
         albums,
         photos: roomPhotos,

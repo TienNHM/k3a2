@@ -2,6 +2,7 @@
 
 import { h } from '../core/dom.js';
 import { reduced } from '../core/motion.js';
+import { sfx } from '../core/audio.js';
 
 const KEY = 'k3a2:curtain-hue';
 const CLOSE_MS = 650;
@@ -35,6 +36,7 @@ export function mountCurtain() {
     if (url.pathname === location.pathname && url.hash) return; // in-page anchor
 
     e.preventDefault();
+    sfx('whoosh');
     el.style.setProperty('--cx', `${e.clientX}px`);
     el.style.setProperty('--cy', `${e.clientY}px`);
     if (a.dataset.hue) el.style.setProperty('--curtain', `hsl(${a.dataset.hue} 100% 62%)`);

@@ -16,7 +16,7 @@
 
 /* People */
 .people { padding: var(--sp-8) var(--gutter) var(--sp-9); background: var(--c-night-2); }
-.people__grid { max-width: var(--max); margin-inline: auto; display: grid; gap: 2rem; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.people__grid { max-width: var(--max); margin-inline: auto; display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(220px, 260px)); justify-content: center; }
 .person { min-height: 380px; perspective: 1200px; outline-offset: 6px; }
 .person__inner { position: relative; width: 100%; height: 100%; min-height: 380px; transform-style: preserve-3d; transition: transform 0.9s var(--ease-out); }
 .person:hover .person__inner, .person:focus .person__inner, .person:focus-within .person__inner { transform: rotateY(180deg); }
@@ -35,19 +35,19 @@
 
 /* Wishes */
 .wishes { display: grid; gap: var(--sp-8); padding: var(--sp-9) var(--gutter); background: var(--c-night); }
-.wishes__stage { display: grid; place-content: center; gap: 1.5rem; max-width: 960px; min-height: 46vh; margin-inline: auto; text-align: center; }
+.wishes__stage { display: grid; align-content: center; gap: 1.5rem; width: 100%; max-width: 960px; min-height: 46vh; margin-inline: auto; text-align: center; }
 .wishes__quote { opacity: 0; font: italic 300 clamp(2rem, 5.4vw, 4.4rem) / 1.12 var(--f-display); letter-spacing: -0.02em; text-wrap: balance; }
 .wishes__quote.is-in { animation: wish-in 1.8s var(--ease-out) forwards; }
 @keyframes wish-in { from { opacity: 0; filter: blur(10px); translate: 0 14px; } to { opacity: 1; filter: none; translate: none; } }
 .wishes__from { font: var(--fs-sm) var(--f-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
-.wishes__slips { display: grid; gap: 1.6rem; max-width: var(--max); margin-inline: auto; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+.wishes__slips { display: grid; gap: 1.6rem; width: 100%; max-width: var(--max); margin-inline: auto; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
 .slip { padding: 1.5rem; background: #f6e7a8; color: #3b3220; box-shadow: var(--sh-frame); rotate: var(--r); font: 600 1.5rem / 1.35 var(--f-hand); }
 .slip span { display: block; margin-top: 0.8rem; font-size: 1.05rem; text-align: right; opacity: 0.7; }
 
 /* Places */
-.places { display: grid; align-items: start; gap: var(--sp-6); max-width: calc(var(--max) + 2 * var(--gutter)); margin-inline: auto; padding: var(--sp-8) var(--gutter) var(--sp-9); grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.6fr); }
+.places { display: grid; align-items: center; gap: var(--sp-6); max-width: calc(var(--max) + 2 * var(--gutter)); margin-inline: auto; padding: var(--sp-8) var(--gutter) var(--sp-9); grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.6fr); }
 .places__list { display: grid; align-content: start; }
-.place { display: grid; width: 100%; gap: 0.2rem 1rem; padding: 1.1rem 1rem; text-align: left; border-top: 1px solid var(--line); grid-template-columns: 2.4rem 1fr; transition: background 0.3s, padding 0.4s var(--ease-out); }
+.place { display: grid; width: 100%; gap: 0.2rem 1rem; padding: 1.5rem 1rem; text-align: left; border-top: 1px solid var(--line); grid-template-columns: 2.4rem 1fr; transition: background 0.3s, padding 0.4s var(--ease-out); }
 .place:hover, .place.is-active { padding-left: 1.6rem; background: var(--accent-soft); }
 .place__no { font: var(--fs-xs) var(--f-mono); color: var(--muted); }
 .place__name { font: 350 var(--fs-lg) var(--f-display); }
