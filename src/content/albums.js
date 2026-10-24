@@ -22,6 +22,7 @@ export const albumMeta = {
   'Ngày Nhà giáo 2017': { year: 2017, dates: '19 – 20/11/2017' },
   'Đám cưới Chùm me': { year: 2017 },
 
+  'Giờ nghỉ trưa': { year: 2018, dates: '30/08/2017 – 13/06/2018' },
   'Lớp 11 (2016)': { year: 2016 },
   'Lớp 12 (2018)': { year: 2018 },
 };

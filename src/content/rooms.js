@@ -13,14 +13,17 @@ export const roomMeta = {
   'Cuối cấp': {
     order: 1, hue: 12, sound: 'wistful', kicker: 'Chia xa', mood: 'Xúc động',
     desc: 'Buổi học cuối, lễ tổng kết, những cái ôm thật chặt trước ngày mỗi người một ngả.',
+    cover: 'photos/Cuối cấp/Tập thể/002.jpg',
   },
   'Lễ hội và văn nghệ': {
     order: 2, hue: 335, sound: 'bright', kicker: 'Rực rỡ', mood: 'Rộn ràng',
     desc: 'Hội trại, văn nghệ, lễ hội ẩm thực — những ngày cả lớp cùng bước ra ánh đèn.',
+    cover: 'photos/Lễ hội và văn nghệ/Hội trại xuân - Thắp nến ước mơ/002.jpg',
   },
   'Hằng ngày': {
     order: 3, hue: 175, sound: 'tender', kicker: 'Bình thường mà nhớ', mood: 'Dịu dàng',
     desc: 'Giờ ra chơi, giờ nghỉ trưa, góc bàn quen — những khoảnh khắc đời thường hóa thành ký ức.',
+    cover: 'photos/Hằng ngày/Giờ nghỉ trưa/014.jpg',
   },
   'Họp lớp và sau này': {
     order: 4, hue: 215, sound: 'warm', kicker: 'Hiện tại', mood: 'Ấm áp',
