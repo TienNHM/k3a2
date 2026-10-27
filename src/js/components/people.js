@@ -3,7 +3,9 @@
 
 import { h, photoUrl } from '../core/dom.js';
 import { members } from '../../content/people.js';
+import { site } from '../../content/site.js';
 
+const TILTS = [-1.2, 0.7, -0.4, 1.1, -0.8, 0.3]; // each card hangs a little crooked, like pinned to a board
 const initial = (name) => name.trim().split(/\s+/).pop()?.[0] ?? '?';
 const givenName = (m) => m.sort ?? m.name.trim().split(/\s+/).pop() ?? '';
 
@@ -18,6 +20,7 @@ function avatar(m) {
 
 function front(m) {
   return [
+    h('div', { class: 'person__tag' }, h('span', null, site.name), h('span', null, site.years.join('–'))),
     avatar(m),
     h('h3', { class: 'person__name' }, m.name),
     m.role ? h('p', { class: 'person__role' }, m.role) : null,
@@ -27,7 +30,7 @@ function front(m) {
 
 function card(m, i) {
   const classes = ['person', m.teacher && 'person--teacher', !m.now && 'person--plain'].filter(Boolean).join(' ');
-  const props = { class: classes, dataset: { reveal: '' }, style: { '--i': i % 6 } };
+  const props = { class: classes, dataset: { reveal: '' }, style: { '--tilt': `${TILTS[i % TILTS.length]}deg` } };
 
   if (!m.now) return h('article', props, h('div', { class: 'person__inner' }, h('div', { class: 'person__face person__front' }, front(m))));
 

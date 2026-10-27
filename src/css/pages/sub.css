@@ -14,32 +14,33 @@
 .phead__arch { position: absolute; inset: 0; border: 1px solid var(--accent); border-radius: 999px 999px 14px 14px; opacity: 0.5; animation: float 8s ease-in-out infinite alternate; }
 .phead__dot { position: absolute; left: -18%; bottom: 8%; width: 40%; aspect-ratio: 1; border-radius: 50%; background: var(--accent); mix-blend-mode: screen; opacity: 0.85; animation: float 10s ease-in-out infinite alternate-reverse; }
 
-/* People */
+/* People: student-ID cards (rounded rectangle, square photo). A card with a `now` line turns over. */
 .people { padding: var(--sp-8) var(--gutter) var(--sp-9); background: var(--c-night-2); }
-.people__grid { max-width: var(--max); margin-inline: auto; display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(220px, 260px)); justify-content: center; }
-.person { min-height: 380px; perspective: 1200px; outline-offset: 6px; }
-.person__inner { position: relative; width: 100%; height: 100%; min-height: 380px; transform-style: preserve-3d; transition: transform 0.9s var(--ease-out); }
-.person:hover .person__inner, .person:focus .person__inner, .person:focus-within .person__inner { transform: rotateY(180deg); }
 .people__count { max-width: var(--max); margin: 0 auto var(--sp-6); font: var(--fs-xs) var(--f-mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+.people__grid { max-width: var(--max); margin-inline: auto; display: grid; gap: 1.6rem; grid-template-columns: repeat(auto-fit, minmax(180px, 230px)); justify-content: center; }
+.person { perspective: 1200px; rotate: var(--tilt, 0deg); outline-offset: 6px; }
+.person__inner { position: relative; transform-style: preserve-3d; transition: transform 0.9s var(--ease-out), translate 0.5s var(--ease-out); }
+.person:hover .person__inner, .person:focus .person__inner, .person:focus-within .person__inner { transform: rotateY(180deg); }
 /* A card with nothing on its back does not turn over; it just lifts a little. */
-.person--plain, .person--plain .person__inner { min-height: 250px; }
-.person--plain .person__inner { transition: translate 0.5s var(--ease-out); }
 .person--plain:hover .person__inner { transform: none; translate: 0 -6px; }
-.person--teacher .person__avatar { outline: 2px solid var(--c-gold); outline-offset: 4px; }
-.person--teacher .person__role { color: var(--c-gold); }
-.person--teacher .person__face { border-color: var(--c-gold); }
 .person__face {
-  position: absolute; inset: 0; display: grid; align-content: center; justify-items: center; gap: 0.7rem; padding: 2rem 1.4rem; text-align: center;
-  border: 1px solid var(--line); border-radius: 999px 999px 16px 16px; backface-visibility: hidden; background: var(--c-night-3);
+  display: grid; gap: 0.6rem; padding: 0.7rem 0.7rem 1.1rem;
+  border: 1px solid var(--line); border-radius: var(--r-md); background: var(--c-night-3); box-shadow: var(--sh-frame);
+  backface-visibility: hidden;
 }
-.person__back { transform: rotateY(180deg); background: var(--accent); color: var(--c-ink); border-color: transparent; }
+.person__front { position: relative; align-content: start; text-align: left; }
+.person__back { position: absolute; inset: 0; align-content: center; justify-items: center; padding: 1.4rem; text-align: center; transform: rotateY(180deg); background: var(--accent); color: var(--c-ink); border-color: transparent; }
 .person__back .eyebrow { color: var(--c-ink); }
-.person__avatar { width: 96px; height: 96px; display: grid; place-items: center; overflow: hidden; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--c-gold)); font: 400 2.4rem var(--f-display); color: var(--c-ink); }
+.person__tag { display: flex; justify-content: space-between; padding: 0.1rem 0.2rem; font: 0.62rem var(--f-mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+.person__avatar { display: grid; place-items: center; width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 8px; background: linear-gradient(135deg, hsl(var(--hue) 45% 26%), hsl(calc(var(--hue) + 35) 40% 17%)); font: 300 3.6rem var(--f-display); color: var(--c-chalk); }
 .person__avatar img { width: 100%; height: 100%; object-fit: cover; }
+.person__name, .person__role, .person__quote { padding-inline: 0.2rem; }
 .person__name { font: 400 var(--fs-lg) / 1.15 var(--f-display); }
 .person__role { font: var(--fs-xs) var(--f-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
 .person__quote { font: italic 300 var(--fs-md) / 1.4 var(--f-display); color: var(--muted); }
 .person__now { font-size: var(--fs-sm); }
+.person--teacher .person__face { border-color: var(--c-gold); }
+.person--teacher .person__tag, .person--teacher .person__role { color: var(--c-gold); }
 
 /* Wishes */
 .wishes { display: grid; gap: var(--sp-8); padding: var(--sp-9) var(--gutter); background: var(--c-night); }
